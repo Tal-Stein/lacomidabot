@@ -3,6 +3,8 @@ from flask import Flask, request
 import telegram
 from telebot.credentials import bot_token, bot_user_name,URL
 
+import firebase_admin
+from firebase_admin import credentials
 
 global bot
 global TOKEN
@@ -10,6 +12,9 @@ TOKEN = bot_token
 bot = telegram.Bot(token=TOKEN)
 
 app = Flask(__name__)
+
+cred = credentials.Certificate("key.json")
+firebase_admin.initialize_app(cred)
 
 @app.route('/{}'.format(TOKEN), methods=['POST'])
 def respond():
