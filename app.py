@@ -16,6 +16,21 @@ app = Flask(__name__)
 cred = credentials.Certificate("key.json")
 firebase_admin.initialize_app(cred)
 
+import pyrebase
+ 
+config = {
+  "apiKey": "AIzaSyBfu5AojVipcEEIHjx85yLE_3el0t7SIoo",
+  "authDomain": "lacomidabot-5124b.firebaseapp.com",
+  "databaseURL": "https://lacomidabot-5124b-default-rtdb.europe-west1.firebasedatabase.app",
+  "projectId": "lacomidabot-5124b",
+  "storageBucket": "lacomidabot-5124b.appspot.com",
+  "messagingSenderId": "1097663730328",
+  "appId": "1:1097663730328:web:ce36882e6154152ec636ed",
+  "measurementId": "G-PQ19P08DFV"
+}
+ 
+firebase = pyrebase.initialize_app(config)
+
 @app.route('/{}'.format(TOKEN), methods=['POST'])
 def respond():
    # retrieve the message in JSON and then transform it to Telegram object
